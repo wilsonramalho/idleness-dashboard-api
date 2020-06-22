@@ -33,11 +33,13 @@ function handleError(res, reason, message, code) {
 }
 
 app.get("/dates", function(req, res){
-
-});
-
-app.get("/dates/:id", function(req, res){
-
+    db.collection(DATES_COLLECTION).find({}).toArray(function(err, docs){
+        if(err) {
+            handleError(res, err.message, "Failed to retrieve date logs");
+        } else {
+            res.status(200).json(docs);
+        }
+    });
 });
 
 app.post("/dates", function(req, res){
@@ -54,12 +56,4 @@ app.post("/dates", function(req, res){
             res.status(201).json(doc.ops[0]);
         }
     });
-});
-
-app.put("/dates/:id", function(req, res){
-
-});
-
-app.delete("/dates/:id", function(req, res){
-
 });
