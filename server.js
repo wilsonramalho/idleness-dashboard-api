@@ -18,7 +18,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
         process.exit(1);
     }
 
-    db = database;
+    db = database.db('idleness-dashboard');
     console.log("Database connection ready", db);
 
     var server = app.listen(process.env.PORT || 8080, function(){
