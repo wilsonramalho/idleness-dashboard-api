@@ -1,14 +1,14 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var mongodb = require('mongodb');
-var ObjectID = mongodb.ObjectID;
+const express = require('express');
+const mongodb = require('mongodb');
+const cors = require('cors');
 
 var DATES_COLLECTION = "dates";
 
-var app = express();
+const app = express();
 app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 var db;
 
